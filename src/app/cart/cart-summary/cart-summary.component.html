@@ -1,0 +1,38 @@
+
+
+<ul *ngIf="cartItems.length>0; else cartEmptyContent" class="nav navbar-nav navbar-light">
+  <div class="dropdown float-right" style="right: 20px; position:absolute; top: 20px; text-align:left;">
+      <a class="btn btn-primary dropdown-toggle dropdown-menu-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="glyphicon glyphicon-shopping-cart"></i>
+    {{ totalCartItemPrice |currency}}({{ totalCartItem}})
+    </a>
+
+    <div class=" dropdown-menu" aria-labelledby="dropdownMenuLink" style="right:0;left:auto;">
+      <li>
+        <a *ngFor="let item of cartItems">
+          <i class="btn btn-xs btn-danger glyphicon glyphicon-remove" (click)="removeFromCart(item.product)"></i>
+          {{item.product.productName |uppercase}}({{item.quantity}}) </a>
+      </li>
+      <li role="separator" class="divider"></li>
+      <li class="text-center">
+        <strong>
+          <a routerLink="my-cart">Go To Cart</a>
+        </strong>
+      </li>
+
+    </div>
+  </div>
+</ul>
+
+
+<ng-template #cartEmptyContent>
+    <ul class="nav navbar-nav navbar-light">
+        <div class="dropdown float-right" style="right: 20px; position:absolute; top: 20px; text-align:left;">
+
+            <a class="btn btn-primary dropdown-toggle dropdown-menu-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="glyphicon glyphicon-shopping-cart"></i>
+                Cart is empty
+          </a>
+       </div>
+      </ul>
+</ng-template>
